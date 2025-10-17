@@ -1,17 +1,184 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nibele Residencial · Trhoncal Homes</title>
-  <meta name="description" content="Estrena hogar en ubicaciones clave de Guadalajara. Nibele Residencial · Comercializa Trhoncal Homes"/>
-  <link rel="stylesheet" href="./assets/estilos.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta id="maps-key" data-key="AIzaSyDS5xZBNad7GPAHdCpa6qDRaUUEmO6WSTs" />
+  <meta name="description" content="Estrena hogar en ubicaciones clave de Guadalajara. Nibele Residencial comercializado por Trhoncal Homes." />
+  <link rel="icon" href="assets/img/favicon.png" />
+  <style>
+:root{
+  --bg:#f7f3ec; --panel:#ffffff; --ink:#111827; --muted:#6b7280;
+  --brand:#0f172a; --brand-ink:#fff; --ring:rgba(0,0,0,.06); --chip:#f1f5f9;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+     color:var(--ink); background:var(--bg); line-height:1.5}
+img{max-width:100%; display:block}
+.container{max-width:1120px; margin:0 auto; padding:0 16px}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--ring)}
+.site-header .nav{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+.logo{height:40px;width:auto}
+.brand small{display:block;color:var(--muted);font-size:12px}
+.brand strong{font-weight:600;font-size:14px}
+.nav-right a{margin-left:12px; color:#111; text-decoration:none; padding:8px 12px; border-radius:999px; border:1px solid var(--ring); background:#fff}
+.nav-right a.btn-primary{background:var(--brand); color:var(--brand-ink); border-color:var(--brand)}
+.nav-right a:hover{box-shadow:0 1px 0 var(--ring) inset, 0 1px 8px var(--ring)}
+.hero{padding:42px 0}
+.hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center}
+.badge{display:inline-block; background:#0b1324; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px}
+.hero h1{font-size:40px; line-height:1.15; margin:12px 0 8px}
+.hero p{color:var(--muted)}
+.hero-actions{display:flex; gap:10px; margin-top:16px}
+.btn-primary,.btn-secondary,.btn-ghost{display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border-radius:10px; padding:10px 14px; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer}
+.btn-primary{background:var(--brand); color:var(--brand-ink)}
+.btn-secondary{background:#fff; color:#111; border-color:var(--ring)}
+.btn-ghost{background:#fff; color:#111; border-color:var(--ring)}
+.btn-primary:hover{opacity:.95}
+.btn-secondary:hover,.btn-ghost:hover{box-shadow:0 0 0 2px var(--ring) inset}
+.section{padding:28px 0}
+.section.alt{background:#fff}
+.cards-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+@media (max-width:960px){ .hero-grid{grid-template-columns:1fr} .cards-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:640px){ .cards-grid{grid-template-columns:1fr} }
+.card{background:var(--panel); border:1px solid var(--ring); border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.card-body{padding:14px}
+.card h3{margin:0 0 6px; font-size:18px}
+.tags{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; color:var(--muted)}
+.tags li{background:var(--chip); border:1px solid var(--ring); padding:5px 10px; border-radius:999px; font-size:12px}
+.card-actions{display:flex; gap:10px; margin-top:12px}
+.amenities{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding-left:16px}
+@media (max-width:640px){ .amenities{grid-template-columns:1fr} }
+.map{height:420px; border-radius:20px; border:1px solid var(--ring); overflow:hidden}
+.lead-form{display:grid; gap:10px}
+.grid-2{display:grid; gap:10px; grid-template-columns:1fr 1fr}
+@media (max-width:640px){ .grid-2{grid-template-columns:1fr} }
+.lead-form input, .lead-form select, .lead-form textarea{
+  padding:12px 12px; border-radius:10px; border:1px solid var(--ring); background:#fff; color:#111; font-size:14px}
+.form-actions{display:flex; gap:10px; align-items:center}
+.site-footer{padding:24px 0; border-top:1px solid var(--ring); background:#fff}
+.site-footer .container{display:flex; justify-content:space-between; color:var(--muted); font-size:13px}
+@media (max-width:640px){ .site-footer .container{flex-direction:column; gap:6px} }
+.modal{position:fixed; inset:0; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; padding:16px}
+.modal[hidden]{display:none}
+.modal-content{background:#fff; border-radius:16px; padding:20px; max-width:420px; width:100%; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.modal h3{margin:0 0 6px}
+.modal p{color:var(--muted); margin:0 0 12px}
+.modal-actions{display:flex; gap:10px; justify-content:center}
+</style>
 </head>
 <body>
-  <!-- La UI completa se inyecta desde js/main.js para simplificar mantenimiento -->
-  <script src="./js/main.js"></script>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="nav-left">
+        <img src="assets/img/logo-trhoncal-homes.png" alt="Trhoncal Homes" class="logo" />
+        <div class="brand">
+          <small>Comercializa</small>
+          <strong>Trhoncal Homes · Nibele Residencial</strong>
+        </div>
+      </div>
+      <nav class="nav-right">
+        <a href="#desarrollos">Desarrollos</a>
+        <a href="#amenidades">Amenidades</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#contacto" class="btn-primary">Quiero información</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="badge">nibele.3dhomes.com.mx</span>
+        <h1>Estrena hogar en ubicaciones clave de Guadalajara</h1>
+        <p>Nibele Residencial llega a Guadalajara con proyectos modernos, eficientes y llenos de vida. Cada desarrollo combina ubicación, diseño y accesibilidad para hacer realidad tu nuevo hogar.</p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-primary">Asesor por WhatsApp</a>
+          <a href="#desarrollos" class="btn-secondary">Ver desarrollos</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="assets/img/hero-moderna.jpg" alt="Nibele Moderna" />
+      </div>
+    </div>
+  </section>
+
+  <section id="desarrollos" class="section">
+    <div class="container">
+      <div class="cards-grid">
+        <article class="card"><div class="card-media"><img src="assets/img/nibele-moderna.jpg" alt="Nibele Moderna" /></div><div class="card-body"><h3>Nibele Moderna</h3><ul class="tags"><li>Ubicación céntrica</li><li>Plusvalía</li><li>Familias</li></ul><div class="card-actions"><a class="btn-secondary" href="https://moderna.3dhomes.com.mx" target="_blank" rel="noreferrer">Ir al sitio</a><button class="btn-ghost btn-descargar" data-dev="Nibele Moderna">Descargar</button></div></div></article>
+        <article class="card"><div class="card-media"><img src="assets/img/nibele-libertad.jpg" alt="Nibele Libertad" /></div><div class="card-body"><h3>Nibele Libertad</h3><ul class="tags"><li>Conectividad</li><li>Servicios</li><li>Diseño</li></ul><div class="card-actions"><a class="btn-secondary" href="https://libertad.3dhomes.com.mx" target="_blank" rel="noreferrer">Ir al sitio</a><button class="btn-ghost btn-descargar" data-dev="Nibele Libertad">Descargar</button></div></div></article>
+        <article class="card"><div class="card-media"><img src="assets/img/nibele-aurea.jpg" alt="Nibele Áurea" /></div><div class="card-body"><h3>Nibele Áurea</h3><ul class="tags"><li>Boutique</li><li>Tranquilo</li><li>Calidad</li></ul><div class="card-actions"><a class="btn-secondary" href="https://aurea.3dhomes.com.mx" target="_blank" rel="noreferrer">Ir al sitio</a><button class="btn-ghost btn-descargar" data-dev="Nibele Áurea">Descargar</button></div></div></article>
+        <article class="card"><div class="card-media"><img src="assets/img/nibele-americana.jpg" alt="Nibele Americana" /></div><div class="card-body"><h3>Nibele Americana</h3><ul class="tags"><li>Vida urbana</li><li>Cafés</li><li>A pie</li></ul><div class="card-actions"><a class="btn-secondary" href="https://americana.3dhomes.com.mx" target="_blank" rel="noreferrer">Ir al sitio</a><button class="btn-ghost btn-descargar" data-dev="Nibele Americana">Descargar</button></div></div></article>
+        <article class="card"><div class="card-media"><img src="assets/img/nibele-centro.jpg" alt="Nibele Centro Histórico" /></div><div class="card-body"><h3>Nibele Centro Histórico</h3><ul class="tags"><li>Patrimonio</li><li>Comercio</li><li>Renta</li></ul><div class="card-actions"><a class="btn-secondary" href="https://centrohistorico.3dhomes.com.mx" target="_blank" rel="noreferrer">Ir al sitio</a><button class="btn-ghost btn-descargar" data-dev="Nibele Centro Histórico">Descargar</button></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="amenidades" class="section alt">
+    <div class="container">
+      <h2>Amenidades y estilo de vida</h2>
+      <ul class="amenities">
+        <li>Acceso controlado</li><li>Parques y áreas verdes</li><li>Crédito Infonavit y bancos</li>
+        <li>Plusvalía y rentabilidad</li><li>Ubicaciones estratégicas</li><li>Modelos eficientes</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="mapa" class="section">
+    <div class="container">
+      <h2>Conecta con tu zona ideal</h2>
+      <p>Clic en los marcadores para abrir el sitio de cada desarrollo.</p>
+      <div id="map" class="map"></div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section alt">
+    <div class="container">
+      <h2>Agenda tu visita o recibe opciones por WhatsApp</h2>
+      <form id="lead-form" class="lead-form">
+        <div class="grid-2">
+          <input name="nombre" placeholder="Nombre completo" required />
+          <input name="telefono" placeholder="Teléfono (WhatsApp)" inputmode="tel" required />
+        </div>
+        <div class="grid-2">
+          <input name="email" type="email" placeholder="Correo" />
+          <input name="zona" placeholder="Zona o colonia" />
+        </div>
+        <div class="grid-2">
+          <input name="presupuesto" placeholder="Presupuesto aprox. (MXN)" inputmode="numeric" />
+          <select name="credito"><option>Infonavit</option><option>Bancario</option><option>Fovissste</option><option>Recurso propio</option></select>
+        </div>
+        <textarea name="mensaje" rows="3" placeholder="Quiero información sobre Nibele Residencial." required></textarea>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Enviar y abrir WhatsApp</button>
+          <a class="btn-secondary" id="solo-wa" href="#" target="_blank" rel="noreferrer">Solo WhatsApp</a>
+        </div>
+        <small>Al enviar aceptas ser contactado para brindarte información de Nibele Residencial.</small>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Trhoncal Homes · Nibele Residencial</small>
+      <small>Guadalajara, Jalisco · nibele.3dhomes.com.mx</small>
+    </div>
+  </footer>
+
+  <div id="dl-modal" class="modal" hidden>
+    <div class="modal-content">
+      <h3>Para descargar la ficha</h3>
+      <p>Llena tus datos y te la enviamos por WhatsApp.</p>
+      <div class="modal-actions">
+        <a href="#contacto" class="btn-primary" id="go-form">Ir al formulario</a>
+        <button class="btn-ghost" id="close-modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
